@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FilesService } from './files.service';
+import { Files } from './files.model';
 
 @Component({
   selector: 'app-files',
@@ -7,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilesComponent implements OnInit {
   columnDefs: any[] = [];
-  rowData: any[] = [];
-  constructor() { }
+  rowData: Files[] = [];
+  constructor(private filesService: FilesService) { }
 
   ngOnInit(): void {
      this.columnDefs = [
@@ -20,14 +22,18 @@ export class FilesComponent implements OnInit {
   ];
 
 
-   this.rowData = [
-    { fileName: 'report.pdf', uploadedBy: 'Alice', date: '2023-04-01', fileLength: '2 MB', fileType: 'PDF' },
-    { fileName: 'image.png', uploadedBy: 'Bob', date: '2023-04-02', fileLength: '3 MB', fileType: 'PNG' },
-    { fileName: 'presentation.pptx', uploadedBy: 'Charlie', date: '2023-04-03', fileLength: '5 MB', fileType: 'PPTX' }
-    // ... more data
-  ];
-  }
+  //  this.rowData = [
+  //   { fileName: 'report.pdf', uploadedBy: 'Alice', date: '2023-04-01', fileLength: '2 MB', fileType: 'PDF' },
+  //   { fileName: 'image.png', uploadedBy: 'Bob', date: '2023-04-02', fileLength: '3 MB', fileType: 'PNG' },
+  //   { fileName: 'presentation.pptx', uploadedBy: 'Charlie', date: '2023-04-03', fileLength: '5 MB', fileType: 'PPTX' }
+  //   // ... more data
+  // ];
 
+    this.filesService.getFiles().subscribe(data => {
+      this.rowData = data;
+    });
+
+}
 }
 
 // import { Component, OnInit } from '@angular/core';

@@ -38,7 +38,8 @@ import { AgGridModule } from 'ag-grid-angular';
     MatSelectModule,
     MatTabsModule,
     MatIconModule,
-    AgGridModule
+    AgGridModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
